@@ -36,10 +36,17 @@
                 <div class="list-group list-group-flush">
                     @foreach ($course->students as $student)
                     <div class="list-group-item text-dark rounded d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <div class="rounded-circle d-inline-block mr-4" style="width:32px; height:32px; background-image:url({{ asset("images/avatar.png") }}); background-position: center; background-size: cover;
-                            background-repeat:no-repeat;"></div>
-                            <div class="h6 font-weight-normal">{{ $student->name }} ({{ $student->attendancePercentage() }})</div>
+                        <div>
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle d-inline-block mr-4" style="width:32px; height:32px; background-image:url({{ asset("images/avatar.png") }}); background-position: center; background-size: cover;
+                                background-repeat:no-repeat;"></div>
+                                <div class="h6 font-weight-normal">{{ $student->name }} ({{ $student->attendancePercentage() }})
+                                    <div class="text-muted small mt-1">
+                                        <strong>Invite Code:</strong> {{ $student->invite_code }}
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="actions">
                             <a href="{{ route("class.student.edit", [$course->id, $student->id]) }}" class="btn btn-link text-secondary" data-toggle="tooltip" data-placement="bottom" title="Edit">
