@@ -1,0 +1,61 @@
+/* The side navigation menu */
+.side-nav {
+    height: 100%; /* 100% Full-height */
+    width: 19rem; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: -19rem;
+    background-color: #fff; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 0.5rem; /* Place content 60px from the top */
+    padding-bottom: 0.5rem;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.side-nav a,
+.side-nav span.nav-label {
+    padding-left: 1rem;
+    margin-right: 1rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+    color: #3c4043;
+    line-height: 1.25rem;
+}
+
+/* The navigation menu links */
+.side-nav a {
+    height: 3.5rem;
+    transition: 0.3s;
+    cursor: pointer;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.seperator {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    margin: 7px 0;
+}
+
+.side-nav a span {
+    margin-left: 1rem;
+}
+
+.side-nav a:hover {
+    color: #3c4043;
+    background-color: #f6f6f6;
+}
+
+.side-nav a:focus {
+    background-color: #eeeeee;
+}
+
+.side-nav a.active {
+    background-color: #e3eefc;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+}

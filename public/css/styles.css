@@ -1,0 +1,14 @@
+.background-image {
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-blend-mode: multiply !important;
+}
+
+.rounded-xl {
+    border-radius: 0.5rem;
+}
+
+.list-group-item-action {
+    cursor: pointer;
+}
