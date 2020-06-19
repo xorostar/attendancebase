@@ -19,7 +19,7 @@ class CreateLecturesTable extends Migration
             $table->unsignedBigInteger("course_id");
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->longText('note')->nullable();
-            $table->date('conducted_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('conducted_at')->nullable();
             $table->timestamps();
         });
     }
