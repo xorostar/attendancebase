@@ -15,7 +15,7 @@ class Lecture extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class)->withPivot('student_id', 'is_present', 'course_id');
+        return $this->belongsToMany(Student::class)->withPivot('student_id', 'is_present');
     }
 
     public function attendancePercentage()

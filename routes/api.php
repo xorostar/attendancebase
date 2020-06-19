@@ -1,5 +1,6 @@
 <?php
 
+use App\Lecture;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,12 @@ Route::get("/class/{enrollment_no}", function (Request $request, $enrollment_no)
     ]);
 });
 
-Route::get("/mark-attendance/{lecture-id}/{enrollment-id}", function (Request $request) {
-    dd("Here");
+Route::get("/mark-attendance/{lecture_id}/{enrollment_no}", function (Request $request, $lecture_id, $enrollment_no) {
+    $student = Student::where("enrollment_no", $enrollment_no)->firstOrFail();
+    $lecture = Lecture::where("lecture_uuid", $lecture_id)->firstOrFail();
+    if ($lecture->course_id != $student->course_id || $lecture->students()->where("student_id", $student->id)->first()) {
+        return response()->json([], 404);
+    }
+    $lecture->students()->attach($student->id, ['is_present' => true]);
+    return response()->json(true);
 });
