@@ -25,7 +25,7 @@ class Lecture extends Model
         if (!$totalStudents) {
             return "Unmarked";
         } else {
-            return (($presentStudents / $totalStudents) * 100) . "%";
+            return ceil((($presentStudents / $totalStudents)) * 100) . "%";
         }
     }
 }

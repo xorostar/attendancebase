@@ -32,7 +32,7 @@
                             {{ $course->students()->count() }} Student
                         </div>
                         <div>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Mark Attendance">
+                            <a href="{{ route("class.lecture.create", $course->id) }}" data-toggle="tooltip" data-placement="bottom" title="Mark Attendance">
                                 <img src="{{ asset("images/qr-code-dark.svg") }}" alt="Mark Attendance" width="24">
                             </a>
                         </div>

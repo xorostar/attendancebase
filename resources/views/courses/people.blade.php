@@ -42,7 +42,11 @@
                                 background-repeat:no-repeat;"></div>
                                 <div class="h6 font-weight-normal">{{ $student->name }} ({{ $student->attendancePercentage() }})
                                     <div class="text-muted small mt-1">
-                                        <strong>Invite Code:</strong> {{ $student->invite_code }}
+                                        @if ($student->invite_code)
+                                            <strong>Invite Code:</strong> {{ $student->invite_code }}
+                                        @else
+                                            <strong>Enrolled</strong>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

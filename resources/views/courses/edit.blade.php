@@ -72,13 +72,24 @@
                 <hr>
                 <fieldset>
                     <legend>Danger Zone</legend>
-                    <div class="form-group d-flex align-items-center justify-content-between">
-                        <span>
-                            <div>Archive this class</div>
-                            <small>Mark this class as archived</small>
-                        </span>
-                        <a href="{{ route("class.toggleArchive", $course->id) }}" onclick="return confirm('Are you sure you want to archive this class?')" class="btn btn-danger btn-sm">Archive this class</a>
-                    </div>
+                    <hr>
+                    @if($course->is_archived)
+                        <div class="form-group d-flex align-items-center justify-content-between">
+                            <span>
+                                <div>Unarchive this class</div>
+                                <small>Move this class back to active classes</small>
+                            </span>
+                            <a href="{{ route("class.toggleArchive", $course->id) }}" onclick="return confirm('Are you sure you want to archive this class?')" class="btn btn-danger btn-sm">Unarchive this class</a>
+                        </div>
+                    @else
+                        <div class="form-group d-flex align-items-center justify-content-between">
+                            <span>
+                                <div>Archive this class</div>
+                                <small>Mark this class as archived</small>
+                            </span>
+                            <a href="{{ route("class.toggleArchive", $course->id) }}" onclick="return confirm('Are you sure you want to archive this class?')" class="btn btn-danger btn-sm">Archive this class</a>
+                        </div>
+                    @endif
                     <div class="form-group d-flex align-items-center justify-content-between">
                         <span>
                             <div>Delete this class</div>

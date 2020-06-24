@@ -7,7 +7,7 @@
                 </h1>
                 <p class="lead">{{ $course->section ?? $course->section}}</p>
             </div>
-            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Mark Attendance" style="height: fit-content;">
+            <a href="{{ route("class.lecture.create", $course->id) }}" data-toggle="tooltip" data-placement="bottom" title="Mark Attendance" style="height: fit-content;">
                 <img src="{{ asset("images/qr-code.svg") }}" alt="Mark Attendance" width="36">
             </a>
         </div>

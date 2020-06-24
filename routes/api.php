@@ -22,8 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get("/enroll-class/{invite_code}", function (Request $request, $invite_code) {
     $student = Student::where("invite_code", $invite_code)->firstOrFail();
-    // $student->invite_code = "";
-    // $student->save();
+    $student->invite_code = "";
+    $student->save();
     return response()->json([
         "enrollment_no" => $student->enrollment_no
     ]);
@@ -44,9 +44,10 @@ Route::get("/class/{enrollment_no}", function (Request $request, $enrollment_no)
 Route::get("/mark-attendance/{lecture_id}/{enrollment_no}", function (Request $request, $lecture_id, $enrollment_no) {
     $student = Student::where("enrollment_no", $enrollment_no)->firstOrFail();
     $lecture = Lecture::where("lecture_uuid", $lecture_id)->firstOrFail();
-    if ($lecture->course_id != $student->course_id || $lecture->students()->where("student_id", $student->id)->first()) {
+    if ($lecture->course_id != $student->course_id) {
         return response()->json([], 404);
     }
+    $lecture->students()->where("student_id", $student->id)->detach();
     $lecture->students()->attach($student->id, ['is_present' => true]);
     return response()->json(true);
 });

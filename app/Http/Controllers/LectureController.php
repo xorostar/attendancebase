@@ -45,13 +45,22 @@ class LectureController extends Controller
             "conducted_at" => ["required", "date"],
             "note" => ["nullable", "string"],
         ]);
+
         if ($validation->fails()) {
             return response()->json(["errors" => $validation->errors()], 422);
         }
+
         $data['lecture_uuid'] = Str::uuid();
         $data["conducted_at"] = request("conducted_at");
         $data["note"] = request("note");
         $lecture = $course->lectures()->create($data);
+
+        $studentIds = $course->students()->pluck("id")->toArray();
+
+        foreach ($studentIds as $studentId) {
+            $lecture->students()->attach($studentId, ['is_present' => false]);
+        }
+
         return response()->json(["qrcode" => \QrCode::size(500)->generate(url("lecture", [$lecture->lecture_uuid])), "redirectUrl" => route('class.lecture.edit', [$course->id, $lecture->id]), "message" => "Course created successfully"], 201);
     }
 
