@@ -35,8 +35,8 @@
                 <hr>
                 <div class="list-group list-group-flush">
                     @foreach ($course->students as $student)
-                    <div class="list-group-item text-dark rounded d-flex align-items-center justify-content-between">
-                        <div>
+                    <div class="list-group-item text-dark rounded row align-items-center justify-content-between">
+                        <div class="col-md-8">
                             <div class="d-flex align-items-center">
                                 <div class="rounded-circle d-inline-block mr-4" style="width:32px; height:32px; background-image:url({{ asset("images/avatar.png") }}); background-position: center; background-size: cover;
                                 background-repeat:no-repeat;"></div>
@@ -46,9 +46,8 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                        <div class="actions">
+                        <div class="actions col-md-4">
                             <a href="{{ route("class.student.edit", [$course->id, $student->id]) }}" class="btn btn-link text-secondary" data-toggle="tooltip" data-placement="bottom" title="Edit">
                                 <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>

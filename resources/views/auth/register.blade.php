@@ -2,7 +2,7 @@
 @extends('layouts.portal')
 
 @section('content')
-<div class="card col-md-4 p-4">
+<div class="card col-md-4 p-4 mt-4">
     <div class="card-body">
         <div class="mb-3">
             <img src="{{ asset("images/logo.png") }}" alt="Attendance Base" class="mx-auto d-block mb-5">

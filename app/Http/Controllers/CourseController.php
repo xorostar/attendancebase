@@ -137,6 +137,9 @@ class CourseController extends Controller
      */
     public function destroy(Request $request, Course $course)
     {
+        if ($course->image) {
+            Storage::delete('public/' . $course->image);
+        }
         $course->delete();
         $request->session()->flash('success', 'Class deleted successfully.');
         return redirect()->route("pages.home");

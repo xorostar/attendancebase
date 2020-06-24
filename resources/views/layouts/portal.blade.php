@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset("css/styles.css") }}">
 </head>
 <body>
-    <div class="vh-100 d-flex align-items-center justify-content-center">
+    <div class="d-flex align-items-center justify-content-center" style="min-height:100vh;">
         @yield('content')
     </div>
 </body>

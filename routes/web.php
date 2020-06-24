@@ -18,6 +18,8 @@ Auth::routes();
 
 Route::get('/', 'PageController@index')->name('pages.home');
 Route::get('/archive', 'PageController@archive')->name('pages.archive');
+Route::get("edit-profile", "ProfileController@edit")->name("profile.edit");
+Route::patch("profile", "ProfileController@update")->name("profile.update");
 Route::resource('class', 'CourseController', ['parameters' => ["class" => "course"]]);
 Route::get('class/{course}/toggle-archive', 'CourseController@toggleArchive')->name('class.toggleArchive');
 Route::get('class/{course}/people', "CourseController@people")->name("class.people");
