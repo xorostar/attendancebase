@@ -46,8 +46,6 @@ class StudentController extends Controller
         $data["enrollment_no"] = Str::uuid();
         $data["invite_code"] = Str::uuid();
 
-
-
         $request->session()->flash('success', 'Student successfully enrolled. For QR attendance, an invitation email has also been sent to the student at the provided email.');
 
         $course->students()->create($data);
@@ -101,9 +99,10 @@ class StudentController extends Controller
     {
         $data = [];
         $data["enrollment_no"] = Str::uuid();
+        $data["device_id"] = "";
         $data["invite_code"] = Str::uuid();
-        $request->session()->flash('success', 'Student device link reset successful. A new invitation email for app registration has also been sent to the student at the student\'s email.');
         $student->update($data);
+        $request->session()->flash('success', 'Student device link reset successful. A new invitation email for app registration has also been sent to the student at the student\'s email.');
         return redirect()->route("class.people", $course->id);
     }
 

@@ -16,13 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::get("/enroll-class/{invite_code}", function (Request $request, $invite_code) {
+Route::get("/enroll-class/{invite_code}/{device_id}", function (Request $request, $invite_code, $device_id) {
     $student = Student::where("invite_code", $invite_code)->firstOrFail();
     $student->invite_code = "";
+    $student->device_id = $device_id;
     $student->save();
     return response()->json([
         "enrollment_no" => $student->enrollment_no
@@ -41,8 +38,8 @@ Route::get("/class/{enrollment_no}", function (Request $request, $enrollment_no)
     ]);
 });
 
-Route::get("/mark-attendance/{lecture_id}/{enrollment_no}", function (Request $request, $lecture_id, $enrollment_no) {
-    $student = Student::where("enrollment_no", $enrollment_no)->firstOrFail();
+Route::get("/mark-attendance/{lecture_id}/{enrollment_no}/{device_id}", function (Request $request, $lecture_id, $enrollment_no, $device_id) {
+    $student = Student::where("enrollment_no", $enrollment_no)->where("device_id", $device_id)->firstOrFail();
     $lecture = Lecture::where("lecture_uuid", $lecture_id)->firstOrFail();
     if ($lecture->course_id != $student->course_id) {
         return response()->json([], 404);
