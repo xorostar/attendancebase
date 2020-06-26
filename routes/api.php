@@ -57,6 +57,7 @@ Route::get("/view-attendance/{enrollment_no}", function (Request $request, $enro
         $record = [];
         $record["date"] = $lecture->conducted_at;
         $record["present"] = $lecture->pivot->is_present;
+        $record["note"] = $lecture->note ? $lecture->note : "None";
         $attendance[] = $record;
     }
     return response()->json(["attendance" => $attendance]);
