@@ -26,7 +26,7 @@
                         @php
                             $count = $course->lectures()->count();
                         @endphp
-                        @forelse ($course->lectures()->latest()->get() as $key => $lecture)
+                        @forelse ($course->lectures()->orderBy("conducted_at", "DESC")->get() as $key => $lecture)
                             <tr>
                                 <th scope="row">{{ $count-- }}</th>
                                 <td>{{ $lecture->conducted_at}}</td>

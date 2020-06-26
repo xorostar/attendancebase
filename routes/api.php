@@ -51,7 +51,7 @@ Route::get("/mark-attendance/{lecture_id}/{enrollment_no}/{device_id}", function
 
 
 Route::get("/view-attendance/{enrollment_no}", function (Request $request, $enrollment_no) {
-    $student = Student::where("enrollment_no", $enrollment_no)->firstOrFail();
+    $student = Student::where("enrollment_no", $enrollment_no)->orderBy("conducted_at", "DESC")->firstOrFail();
     $attendance = [];
     foreach ($student->lectures as $lecture) {
         $record = [];
