@@ -10,7 +10,7 @@ class Student extends Model
 
     public function lectures()
     {
-        return $this->belongsToMany(Lecture::class)->withPivot('student_id', 'is_present', 'course_id');
+        return $this->belongsToMany(Lecture::class)->withPivot('student_id', 'is_present');
     }
 
     public function course()

@@ -48,3 +48,16 @@ Route::get("/mark-attendance/{lecture_id}/{enrollment_no}/{device_id}", function
     $lecture->students()->attach($student->id, ['is_present' => true]);
     return response()->json(true);
 });
+
+
+Route::get("/view-attendance/{enrollment_no}", function (Request $request, $enrollment_no) {
+    $student = Student::where("enrollment_no", $enrollment_no)->firstOrFail();
+    $attendance = [];
+    foreach ($student->lectures as $lecture) {
+        $record = [];
+        $record["date"] = $lecture->conducted_at;
+        $record["present"] = $lecture->pivot->is_present;
+        $attendance[] = $record;
+    }
+    return response()->json(["attendance" => $attendance]);
+});
