@@ -74,7 +74,7 @@
         </div>
     </nav>
 
-    <div id="side-nav" class="side-nav shadow-lg">
+    <div id="side-nav" class="side-nav shadow-lg" style="z-index: 3;">
         <span class="nav-label text-muted">
             Teaching
         </span>
