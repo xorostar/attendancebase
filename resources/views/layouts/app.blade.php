@@ -119,6 +119,18 @@
                 Profile
             </span>
         </a>
+        <div class="seperator"></div>
+        <span class="nav-label text-muted">
+            Resources
+        </span>
+        <a class="font-weight-normal @if(request()->routeIs("profile.edit")) active @endif" href="{{ asset("/app.apk") }}">
+            <svg class="bi bi-app" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M11 2H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3zM5 1a4 4 0 0 0-4 4v6a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4H5z"/>
+            </svg>
+            <span>
+                Download App
+            </span>
+        </a>
     </div>
 
     <div class="modal fade" id="create-class-modal" tabindex="-1" role="dialog" aria-labelledby="Create a new class" aria-hidden="true">
