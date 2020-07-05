@@ -27,6 +27,7 @@ Route::get('class/{course}/toggle-archive', 'CourseController@toggleArchive')->n
 Route::get('class/{course}/people', "CourseController@people")->name("class.people");
 Route::resource('class.lecture', 'LectureController', ['parameters' => ["class" => "course"]]);
 Route::post('class/{course}/lecture/generateQR', "LectureController@generateQR")->name("class.lecture.generateQR");
+Route::get('class/{course}/lecture/{lecture}/clearQR', "LectureController@clearQR")->name("class.lecture.clearQR");
 Route::resource('class.student', 'StudentController', ['parameters' => ["class" => "course"]]);
 Route::get('class/{course}/student/{student}/reset-device-link', "StudentController@resetDeviceLink")->name("class.student.resetDeviceLink");
 Route::resource('class.teacher', 'TeacherController', ['parameters' => ["class" => "course"]]);

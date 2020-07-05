@@ -61,7 +61,14 @@ class LectureController extends Controller
             $lecture->students()->attach($studentId, ['is_present' => false]);
         }
 
-        return response()->json(["qrcode" => \QrCode::size(500)->generate(url("lecture", [$lecture->lecture_uuid])), "redirectUrl" => route('class.lecture.edit', [$course->id, $lecture->id]), "message" => "Course created successfully"], 201);
+        return response()->json(["qrcode" => \QrCode::size(500)->generate(url("lecture", [$lecture->lecture_uuid])), "redirectUrl" => route('class.lecture.clearQR', [$course->id, $lecture->id]), "message" => "Course created successfully"], 201);
+    }
+
+    public function clearQR(Request $request, Course $course, Lecture $lecture)
+    {
+        $lecture->lecture_uuid = "";
+        $lecture->save();
+        return response()->json(["status" => true, "redirectUrl" => route('class.lecture.edit', [$course->id, $lecture->id])], 200);
     }
 
     /**
