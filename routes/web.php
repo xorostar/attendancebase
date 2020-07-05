@@ -1,5 +1,7 @@
 <?php
 
+use App\Course;
+use App\Mail\InvitationMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +30,8 @@ Route::post('class/{course}/lecture/generateQR', "LectureController@generateQR")
 Route::resource('class.student', 'StudentController', ['parameters' => ["class" => "course"]]);
 Route::get('class/{course}/student/{student}/reset-device-link', "StudentController@resetDeviceLink")->name("class.student.resetDeviceLink");
 Route::resource('class.teacher', 'TeacherController', ['parameters' => ["class" => "course"]]);
+
+Route::get('/invitation', function () {
+    $course = Course::first();
+    return new InvitationMail($course, $course->students[0]);
+});

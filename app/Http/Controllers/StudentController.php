@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Mail\InvitationMail;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class StudentController extends Controller
@@ -48,7 +50,10 @@ class StudentController extends Controller
 
         $request->session()->flash('success', 'Student successfully enrolled. For QR attendance, an invitation email has also been sent to the student at the provided email.');
 
-        $course->students()->create($data);
+        $student = $course->students()->create($data);
+
+        Mail::to($data["email"])->send(new InvitationMail($course, $student));
+
         return redirect()->route("class.people", $course->id);
     }
 
@@ -102,6 +107,9 @@ class StudentController extends Controller
         $data["device_id"] = "";
         $data["invite_code"] = Str::uuid();
         $student->update($data);
+
+        Mail::to($data["email"])->send(new InvitationMail($course, $student));
+
         $request->session()->flash('success', 'Student device link reset successful. A new invitation email for app registration has also been sent to the student at the student\'s email.');
         return redirect()->route("class.people", $course->id);
     }

@@ -7,21 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class InvitationEmail extends Mailable
+class InvitationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $student, $course;
+    public $course;
+    public $student;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($student, $course)
+    public function __construct($course, $student)
     {
-        $this->student = $student;
         $this->course = $course;
+        $this->student = $student;
     }
 
     /**
@@ -31,6 +32,6 @@ class InvitationEmail extends Mailable
      */
     public function build()
     {
-        return $this->from("bot@attendancebase.com")->view('mails.invitation-mail');
+        return $this->markdown('emails.invitation');
     }
 }
